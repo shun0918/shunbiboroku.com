@@ -21,7 +21,7 @@ type Props = {
   description: string;
 };
 
-const Slug = (props: Props): JSX.Element => {
+const Slug = (props: Props) => {
   const body = _documentToReactComponents(props.post.fields.body as Document);
 
   return (

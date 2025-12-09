@@ -5,7 +5,7 @@ import SectionHeader from '~/components/SectionHeader';
 import styles from '~/styles/pages/works.module.scss';
 import Header from '~/components/Header';
 
-export default function Works(): JSX.Element {
+export default function Works() {
   const [works, setWorks] = useState([]);
   useEffect(() => {
     async function getWorks() {
