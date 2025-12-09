@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Block, Inline, Text } from '@contentful/rich-text-types';
-import Client, { createClient, EntrySkeletonType } from 'contentful';
+import * as Client from 'contentful';
+import { createClient, EntrySkeletonType } from 'contentful';
 import * as Types from '~/models/contentful/contentful';
 // const contentful = require('contentful')
 

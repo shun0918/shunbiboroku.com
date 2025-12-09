@@ -5,7 +5,7 @@ import '~/styles/_app/destyle.css';
 import '~/styles/_app/globals.scss';
 import type { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp({ Component, pageProps }: AppProps) {
   usePageView();
   return (
     <>

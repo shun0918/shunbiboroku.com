@@ -3,7 +3,7 @@ import Ga from '~/components/Ga';
 import Pwa from '~/components/Pwa';
 
 export default class MyDocument extends Document {
-  render(): JSX.Element {
+  render() {
     return (
       <Html>
         <Head>

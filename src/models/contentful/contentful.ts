@@ -1,4 +1,5 @@
-import Client, { FieldsType } from 'contentful';
+import * as Client from 'contentful';
+import { FieldsType } from 'contentful';
 
 export interface Post extends FieldsType {
   thumbnail: Client.Asset<undefined>;
