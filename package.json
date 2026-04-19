@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "predev": "node scripts/copy-content-images.js",
-    "build": "next build && next-sitemap",
+    "build": "next build --webpack && next-sitemap",
     "prebuild": "node scripts/copy-content-images.js",
     "postbuild": "next-sitemap",
     "start": "next start",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@serwist/next": "^9.5.7",
     "gray-matter": "^4.0.3",
-    "next": "^15.4.8",
+    "next": "^16.2.4",
     "prismjs": "^1.30.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@next/eslint-plugin-next": "^15.5.15",
+    "@next/eslint-plugin-next": "^16.2.4",
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^25.6.0",
     "@types/prismjs": "^1.26.6",

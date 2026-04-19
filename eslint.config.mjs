@@ -47,6 +47,7 @@ export default [
       ...nextPlugin.configs['core-web-vitals'].rules,
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
+      '@next/next/no-img-element': 'off',
       'prettier/prettier': 'error',
     },
   },
