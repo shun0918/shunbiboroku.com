@@ -8,7 +8,8 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "format": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx src"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "migrate:contentful": "node --env-file=.env.local --import tsx scripts/migrate-contentful/index.ts"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.1.6",
