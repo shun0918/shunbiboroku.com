@@ -1,21 +1,17 @@
-import { useEffect, useState } from 'react';
-import { fetchAllPosts } from '~/lib/contentful/contentful';
+import type { GetStaticProps } from 'next';
 import Ogp from '~/components/Ogp';
 import FirstView from '~/components/FirstView';
 import PostCard from '~/components/PostCard';
 import SectionHeader from '~/components/SectionHeader';
 import styles from '~/styles/pages/index.module.scss';
+import { listPosts } from '~/lib/content/posts';
+import type { PostSummary } from '~/models/post';
 
-export default function Index() {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    async function getPosts() {
-      const allPosts = await fetchAllPosts('post');
-      setPosts([...allPosts]);
-    }
-    getPosts();
-  }, []);
+type Props = {
+  posts: PostSummary[];
+};
 
+export default function Index({ posts }: Props) {
   return (
     <>
       <Ogp
@@ -30,21 +26,17 @@ export default function Index() {
         <SectionHeader title="Articles" />
         <section className={styles.container}>
           <div className={styles.posts__list}>
-            {posts.length > 0
-              ? posts.map((p) => (
-                  <PostCard
-                    key={p.fields.slug}
-                    title={p.fields.title}
-                    thumbnail={p.fields.thumbnail}
-                    publishedAt={p.fields.publishedAt}
-                    updatedAt={p.fields.updatedAt}
-                    slug={p.fields.slug}
-                  />
-                ))
-              : null}
+            {posts.map((p) => (
+              <PostCard key={p.slug} {...p} />
+            ))}
           </div>
         </section>
       </main>
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const posts = await listPosts();
+  return { props: { posts } };
+};

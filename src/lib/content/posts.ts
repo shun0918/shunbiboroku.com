@@ -23,7 +23,10 @@ async function loadRaw(slug: string): Promise<{ data: FrontMatter; content: stri
   return { data: parsed.data as FrontMatter, content: parsed.content };
 }
 
-function assertValid(data: FrontMatter, slug: string): asserts data is Required<
+function assertValid(
+  data: FrontMatter,
+  slug: string,
+): asserts data is Required<
   Pick<FrontMatter, 'title' | 'slug' | 'publishedAt' | 'updatedAt' | 'thumbnail'>
 > &
   FrontMatter {
