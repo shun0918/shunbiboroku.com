@@ -1,32 +1,17 @@
 {
   "compilerOptions": {
     "paths": {
-      "~/*": [
-        "./src/*"
-      ]
+      "~/*": ["./src/*"]
     },
     "sourceMap": true,
     "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "jsx": "react-jsx",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "types": [
-      "node"
-    ],
-    "ignoreDeprecations": "6.0",
-    // "strictNullChecks": true /* Enable strict null checks. */
-    // "noUnusedLocals": true /* Report errors on unused locals. */
-    // "noUnusedParameters": true /* Report errors on unused parameters. */
-    // "noUncheckedIndexedAccess": true,
-    // "noImplicitReturns": true /* Report error when not all code paths in function return a value. */
-    // "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */
+    "types": ["node"],
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -34,21 +19,9 @@
     "isolatedModules": true,
     "moduleResolution": "bundler",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "plugins": [{ "name": "next" }]
   },
-  "files": [
-    "next-env.d.ts"
-  ],
-  "include": [
-    "src/**/*",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "files": ["next-env.d.ts"],
+  "include": ["src/**/*", ".next/types/**/*.ts", ".next/dev/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
