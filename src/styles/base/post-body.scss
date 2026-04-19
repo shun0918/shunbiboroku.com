@@ -43,6 +43,9 @@
   a {
     color: var(--c-text-a);
     text-decoration: underline;
+    &:hover {
+      color: var(--c-text-a-hover);
+    }
   }
   pre {
     padding: 1.5em;
