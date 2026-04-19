@@ -1,9 +1,11 @@
 const path = require('path');
-const withPWA = require('next-pwa')({
-  dest: 'public',
+const withSerwist = require('@serwist/next').default({
+  swSrc: 'src/sw.ts',
+  swDest: 'public/sw.js',
+  disable: process.env.NODE_ENV === 'development',
 });
 
-module.exports = withPWA({
+module.exports = withSerwist({
   sassOptions: {
     includePaths: [path.join(__dirname, 'src/styles')],
   },
