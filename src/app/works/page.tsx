@@ -1,16 +1,17 @@
-import type { GetStaticProps } from 'next';
+import type { Metadata } from 'next';
 import Abstruct from '~/components/Abstruct';
-import SectionHeader from '~/components/SectionHeader';
-import styles from '~/styles/pages/works.module.scss';
 import Header from '~/components/Header';
+import SectionHeader from '~/components/SectionHeader';
 import { listWorks } from '~/lib/content/works';
-import type { Works } from '~/models/works';
+import styles from '~/styles/pages/works.module.scss';
 
-type Props = {
-  works: Works[];
+export const metadata: Metadata = {
+  title: 'Works',
+  openGraph: { type: 'website', url: '/works' },
 };
 
-export default function WorksPage({ works }: Props) {
+export default async function WorksPage() {
+  const works = await listWorks();
   return (
     <>
       <Header />
@@ -33,8 +34,3 @@ export default function WorksPage({ works }: Props) {
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const works = await listWorks();
-  return { props: { works } };
-};

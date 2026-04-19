@@ -1,29 +1,60 @@
-import type { GetStaticPaths, GetStaticProps } from 'next';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
 import rehypePrismPlus from 'rehype-prism-plus';
-import { getAllPostSlugs, getPostBySlug } from '~/lib/content/posts';
-import type { Post } from '~/models/post';
-import PostContent from '~/components/PostContent';
-import Ogp from '~/components/Ogp';
-import styles from '~/styles/pages/post/[slug].module.scss';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
 import Header from '~/components/Header';
+import PostContent from '~/components/PostContent';
+import { getAllPostSlugs, getPostBySlug } from '~/lib/content/posts';
+import styles from '~/styles/pages/post/[slug].module.scss';
 
-type Props = {
-  post: Post;
-};
+type RouteParams = Promise<{ slug: string }>;
 
-const Slug = ({ post }: Props) => {
+export async function generateStaticParams() {
+  const slugs = await getAllPostSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: { params: RouteParams }): Promise<Metadata> {
+  const { slug } = await params;
+  try {
+    const post = await getPostBySlug(slug);
+    return {
+      title: post.title,
+      description: post.description,
+      openGraph: {
+        type: 'article',
+        url: '/post/' + post.slug,
+        title: post.title,
+        description: post.description,
+        images: [post.thumbnail],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: post.title,
+        description: post.description,
+        images: [post.thumbnail],
+      },
+    };
+  } catch {
+    return {};
+  }
+}
+
+export const dynamicParams = false;
+
+export default async function PostPage({ params }: { params: RouteParams }) {
+  const { slug } = await params;
+  let post;
+  try {
+    post = await getPostBySlug(slug);
+  } catch {
+    notFound();
+  }
+
   return (
     <>
-      <Ogp
-        title={post.title + '| Shun Bibo Roku'}
-        description={post.description}
-        image={post.thumbnail}
-        type="article"
-        path={'/post/' + post.slug}
-      />
       <Header />
       <main className={styles.main}>
         <PostContent
@@ -37,7 +68,7 @@ const Slug = ({ post }: Props) => {
                 img: ({ src, alt, width, height }) => {
                   const resolved =
                     typeof src === 'string' && src.startsWith('./')
-                      ? `/content/post/${post.slug}/${src.replace(/^\.\//, '')}`
+                      ? '/content/post/' + post.slug + '/' + src.replace(/^\.\//, '')
                       : src;
                   return <img src={resolved} alt={alt ?? ''} width={width} height={height} />;
                 },
@@ -64,18 +95,4 @@ const Slug = ({ post }: Props) => {
       </main>
     </>
   );
-};
-
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const slug = params?.slug as string;
-  const post = await getPostBySlug(slug);
-  return { props: { post } };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = await getAllPostSlugs();
-  const paths = slugs.map((slug) => ({ params: { slug } }));
-  return { paths, fallback: false };
-};
-
-export default Slug;
+}
