@@ -83,7 +83,7 @@ SCSS Modules per component (`src/styles/components/*.module.scss`) and per page 
 ## Tooling
 
 - **TypeScript**: 6.0, `strict: true`, `moduleResolution: "bundler"`, `types: ["node"]` (so `src/global.d.ts` augments `Window` for gtag). `ignoreDeprecations` was removed after Phase 2.
-- **ESLint**: 10.x with flat config in `eslint.config.mjs`. Uses `typescript-eslint`, `eslint-plugin-react`, `eslint-plugin-react-hooks@7`, `@next/eslint-plugin-next` (core-web-vitals rules), and `eslint-config-prettier/flat` last. `@next/next/no-img-element` is off (native `<img>` is a deliberate project choice). React version is pinned to `'19.2'` in settings to work around an upstream issue where `eslint-plugin-react`'s version-detection uses a removed ESLint-10 API.
+- **ESLint**: 10.x with flat config in `eslint.config.mjs`. Uses `typescript-eslint`, `eslint-plugin-react-hooks@7`, `@next/eslint-plugin-next` (core-web-vitals rules), and `eslint-config-prettier/flat` last. `@next/next/no-img-element` is off (native `<img>` is a deliberate project choice). `eslint-plugin-react` is intentionally not installed — it has no ESLint-10-compatible release and its rules mostly overlap with what TypeScript + the Next plugin already enforce.
 - **Prettier**: `.prettierrc` enforces 2-space indent, single quotes, trailing commas, 100-char width, semicolons. Run `npm run lint` and `npm run format` before committing.
 
 ## Conventions

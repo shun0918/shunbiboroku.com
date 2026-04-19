@@ -1,6 +1,5 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import prettier from 'eslint-config-prettier/flat';
 import prettierPlugin from 'eslint-plugin-prettier';
@@ -24,7 +23,6 @@ export default [
   {
     files: ['**/*.{ts,tsx,js,jsx}'],
     plugins: {
-      react: reactPlugin,
       'react-hooks': reactHooks,
       prettier: prettierPlugin,
       '@next/next': nextPlugin,
@@ -40,13 +38,9 @@ export default [
       },
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
-    settings: { react: { version: '19.2' } },
     rules: {
-      ...reactPlugin.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
-      'react/prop-types': 'off',
-      'react/react-in-jsx-scope': 'off',
       '@next/next/no-img-element': 'off',
       '@next/next/no-page-custom-font': 'off',
       'prettier/prettier': 'error',
