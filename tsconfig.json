@@ -18,6 +18,8 @@
     "skipLibCheck": true,
     "strict": false,
     "noImplicitAny": true,
+    "types": ["node"],
+    "ignoreDeprecations": "6.0",
     // "strictNullChecks": true /* Enable strict null checks. */
     // "noUnusedLocals": true /* Report errors on unused locals. */
     // "noUnusedParameters": true /* Report errors on unused parameters. */
@@ -29,7 +31,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "incremental": true
   },
   "files": [
