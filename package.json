@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "predev": "node scripts/copy-content-images.js",
     "build": "next build && next-sitemap",
+    "prebuild": "node scripts/copy-content-images.js",
     "postbuild": "next-sitemap",
     "start": "next start",
     "format": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
