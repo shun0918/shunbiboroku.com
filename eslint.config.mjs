@@ -48,6 +48,7 @@ export default [
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       '@next/next/no-img-element': 'off',
+      '@next/next/no-page-custom-font': 'off',
       'prettier/prettier': 'error',
     },
   },

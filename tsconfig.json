@@ -33,13 +33,20 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "moduleResolution": "bundler",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "files": [
     "next-env.d.ts"
   ],
   "include": [
-    "src/**/*"
+    "src/**/*",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

@@ -10,4 +10,5 @@ module.exports = withSerwist({
     loadPaths: [path.join(__dirname, 'src/styles')],
     silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'],
   },
+  turbopack: {},
 });
