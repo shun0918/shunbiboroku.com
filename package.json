@@ -10,7 +10,7 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "format": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx src"
+    "lint": "eslint src"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -28,20 +28,23 @@
     "strip-markdown": "^6.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@next/eslint-plugin-next": "^15.5.15",
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^25.6.0",
     "@types/prismjs": "^1.26.6",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@typescript-eslint/eslint-plugin": "^8.58.2",
-    "@typescript-eslint/parser": "^8.58.2",
-    "eslint": "^9.17.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint": "^10.2.1",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
-    "eslint-plugin-react": "^7.37.3",
-    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.5.0",
+    "jiti": "^2.6.1",
     "next-sitemap": "^4.2.3",
     "prettier": "^3.8.3",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.58.2"
   }
 }

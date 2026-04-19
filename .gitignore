@@ -34,3 +34,9 @@ public
 
 # migration working directory
 /tmp
+
+# playwright debug artifacts
+/.playwright-cli
+
+# typescript incremental build info
+tsconfig.tsbuildinfo
