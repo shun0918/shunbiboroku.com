@@ -5,8 +5,8 @@
     "start_url":        "https://shunbiboroku.com/",
     "display":          "standalone",
     "orientation":      "any",
-    "background_color": "#fff",
-    "theme_color":      "#fff",
+    "background_color": "#e8eaee",
+    "theme_color":      "#e8eaee",
     "dir": "ltr",
     "icons": [
         {
