@@ -1,13 +1,13 @@
 import styles from '~/styles/components/PostContent.module.scss';
-import { Asset, EntryFields } from 'contentful';
 import { ReactNode } from 'react';
+
 type Props = {
-  title: EntryFields.Text;
-  thumbnail: Asset<undefined>;
+  title: string;
+  thumbnail: string;
   body: ReactNode;
-  publishedAt: EntryFields.Date;
-  updatedAt: EntryFields.Date;
-  slug: EntryFields.Text;
+  publishedAt: string;
+  updatedAt: string;
+  slug: string;
 };
 
 const PostContent: React.FC<Props> = ({ title, thumbnail, body, publishedAt }) => {
@@ -20,8 +20,8 @@ const PostContent: React.FC<Props> = ({ title, thumbnail, body, publishedAt }) =
       <div className={styles['content__eyecatch-wrapper']}>
         <img
           className={styles.content__eyecatch}
-          alt={thumbnail.fields.file.fileName}
-          src={thumbnail.fields.file.url}
+          alt={title}
+          src={thumbnail}
           width="1280"
           height="512"
         />

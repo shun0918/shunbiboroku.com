@@ -1,40 +1,40 @@
-import { useEffect, useState } from 'react';
-import { fetchAllPosts, parseImgUrl } from '~/lib/contentful/contentful';
+import type { GetStaticProps } from 'next';
 import Abstruct from '~/components/Abstruct';
 import SectionHeader from '~/components/SectionHeader';
 import styles from '~/styles/pages/works.module.scss';
 import Header from '~/components/Header';
+import { listWorks } from '~/lib/content/works';
+import type { Works } from '~/models/works';
 
-export default function Works() {
-  const [works, setWorks] = useState([]);
-  useEffect(() => {
-    async function getWorks() {
-      const allWorks = await fetchAllPosts('works');
-      setWorks([...allWorks]);
-    }
-    getWorks();
-  }, []);
+type Props = {
+  works: Works[];
+};
+
+export default function WorksPage({ works }: Props) {
   return (
     <>
       <Header />
       <SectionHeader title="Works" />
       <ul className={styles.works}>
-        {works.length > 0
-          ? works.map((m) => (
-              <li className={styles.works__item} key={m.fields.slug}>
-                <Abstruct
-                  title={m.fields.name}
-                  tags={m.fields.roles}
-                  description={m.fields.description}
-                  url={m.fields.url}
-                  imagePath={parseImgUrl(m.fields.image)}
-                  height="720"
-                  width="1280"
-                />
-              </li>
-            ))
-          : null}
+        {works.map((m) => (
+          <li className={styles.works__item} key={m.slug}>
+            <Abstruct
+              title={m.name}
+              tags={m.roles}
+              description={m.description}
+              url={m.url}
+              imagePath={m.image}
+              height="720"
+              width="1280"
+            />
+          </li>
+        ))}
       </ul>
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const works = await listWorks();
+  return { props: { works } };
+};

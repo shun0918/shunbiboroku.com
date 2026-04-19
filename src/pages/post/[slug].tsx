@@ -1,82 +1,81 @@
-import { Asset, Entry, EntrySkeletonType } from 'contentful';
-import { _documentToReactComponents } from '~/lib/contentful/_documentToReactComponents';
-import { Document } from '@contentful/rich-text-types';
-import {
-  fetchFieldCollection,
-  fetchPostBySlug,
-  parsePlainTextForDescription,
-} from '~/lib/contentful/contentful';
-import { Post } from '~/models/contentful/contentful';
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import rehypePrismPlus from 'rehype-prism-plus';
+import { getAllPostSlugs, getPostBySlug } from '~/lib/content/posts';
+import type { Post } from '~/models/post';
 import PostContent from '~/components/PostContent';
 import Ogp from '~/components/Ogp';
 import styles from '~/styles/pages/post/[slug].module.scss';
-import { GetStaticPaths, GetStaticProps } from 'next';
 import Header from '~/components/Header';
 
 type Props = {
-  post: Entry<EntrySkeletonType<Post, 'post'>, undefined, string>;
-  image: string;
-  path: string;
-  slug: string;
-  description: string;
+  post: Post;
 };
 
-const Slug = (props: Props) => {
-  const body = _documentToReactComponents(props.post.fields.body as Document);
-
+const Slug = ({ post }: Props) => {
   return (
     <>
-      {'fields' in props.post ? (
-        <Ogp
-          title={props.post.fields.title + '| Shun Bibo Roku'}
-          description={props.description}
-          image={props.image}
-          type="article"
-          path={props.path}
-        />
-      ) : null}
+      <Ogp
+        title={post.title + '| Shun Bibo Roku'}
+        description={post.description}
+        image={post.thumbnail}
+        type="article"
+        path={'/post/' + post.slug}
+      />
       <Header />
       <main className={styles.main}>
-        {'fields' in props.post ? (
-          <PostContent
-            title={props.post.fields.title}
-            thumbnail={props.post.fields.thumbnail}
-            body={body}
-            publishedAt={props.post.fields.publishedAt}
-            updatedAt={props.post.fields.updatedAt}
-            slug={props.post.fields.slug}
-          />
-        ) : null}
+        <PostContent
+          title={post.title}
+          thumbnail={post.thumbnail}
+          body={
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw, [rehypePrismPlus, { ignoreMissing: true }]]}
+              components={{
+                img: ({ src, alt, width, height }) => {
+                  const resolved =
+                    typeof src === 'string' && src.startsWith('./')
+                      ? `/content/post/${post.slug}/${src.replace(/^\.\//, '')}`
+                      : src;
+                  return <img src={resolved} alt={alt ?? ''} width={width} height={height} />;
+                },
+                a: ({ href, children, ...rest }) => (
+                  <a
+                    href={href}
+                    {...(typeof href === 'string' && /^https?:\/\//.test(href)
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
+                    {...rest}
+                  >
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {post.body}
+            </ReactMarkdown>
+          }
+          publishedAt={post.publishedAt}
+          updatedAt={post.updatedAt}
+          slug={post.slug}
+        />
       </main>
     </>
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const post = await fetchPostBySlug(params.slug);
-  const field = post.fields.thumbnail as unknown as Asset;
-  const image = 'https:' + field.fields.file.url;
-  const path = '/post/' + params.slug;
-  const description = parsePlainTextForDescription(post.fields.body);
-
-  return {
-    props: {
-      post,
-      image,
-      path,
-      slug: params.slug,
-      description,
-    },
-  };
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const slug = params?.slug as string;
+  const post = await getPostBySlug(slug);
+  return { props: { post } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = await fetchFieldCollection('post', 'fields.slug');
-  const paths = slugs.map((slug) => ({
-    params: slug,
-  }));
-  console.log(paths);
-  return { paths, fallback: 'blocking' };
+  const slugs = await getAllPostSlugs();
+  const paths = slugs.map((slug) => ({ params: { slug } }));
+  return { paths, fallback: false };
 };
 
 export default Slug;

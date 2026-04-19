@@ -4,24 +4,33 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "predev": "node scripts/copy-content-images.js",
     "build": "next build && next-sitemap",
+    "prebuild": "node scripts/copy-content-images.js",
     "postbuild": "next-sitemap",
     "start": "next start",
     "format": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^16.1.6",
-    "contentful": "^11.9.0",
+    "gray-matter": "^4.0.3",
     "next": "^15.4.8",
     "next-pwa": "^5.6.0",
+    "prismjs": "^1.30.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "sass": "^1.83.1"
+    "react-markdown": "^10.1.0",
+    "rehype-prism-plus": "^2.0.2",
+    "rehype-raw": "^7.0.0",
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
+    "sass": "^1.83.1",
+    "strip-markdown": "^6.0.0"
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^22.10.2",
+    "@types/prismjs": "^1.26.6",
     "@types/react": "^19.0.6",
     "@types/react-dom": "^19.0.2",
     "@typescript-eslint/eslint-plugin": "^8.18.2",

@@ -90,4 +90,24 @@
   img {
     max-width:100%;
   }
+  code[class*='language-'],
+  pre[class*='language-'] {
+    font-family: var(--font-code);
+    font-size: 0.9em;
+    line-height: 1.5;
+    tab-size: 2;
+    white-space: pre;
+  }
+  .token {
+    &.comment, &.prolog, &.doctype, &.cdata { color: #8b94a3; font-style: italic; }
+    &.punctuation { color: #c0c5ce; }
+    &.property, &.tag, &.boolean, &.number, &.constant, &.symbol, &.deleted { color: #e6a9b4; }
+    &.selector, &.attr-name, &.string, &.char, &.builtin, &.inserted { color: #a3d9a5; }
+    &.operator, &.entity, &.url { color: #d8a172; }
+    &.atrule, &.attr-value, &.keyword { color: #c8a8e0; }
+    &.function, &.class-name { color: #f0d57d; }
+    &.regex, &.variable { color: #d8a172; }
+    &.important, &.bold { font-weight: bold; }
+    &.italic { font-style: italic; }
+  }
 }

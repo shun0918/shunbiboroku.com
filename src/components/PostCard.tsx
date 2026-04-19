@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Post } from '~/models/contentful/contentful';
+import type { PostSummary } from '~/models/post';
 import styles from '~/styles/components/PostCard.module.scss';
 
-const PostCard: React.FC<Post> = ({ title, thumbnail, publishedAt, slug }) => {
+const PostCard: React.FC<PostSummary> = ({ title, thumbnail, publishedAt, slug }) => {
   return (
     <Link
       href={{ pathname: '/post/' + slug }}
@@ -13,8 +13,8 @@ const PostCard: React.FC<Post> = ({ title, thumbnail, publishedAt, slug }) => {
         <div className={styles['post-card__eyecatch']}>
           <img
             className={styles['post-card__eyecatch--img']}
-            alt={thumbnail.fields.file.fileName}
-            src={thumbnail.fields.file.url}
+            alt={title}
+            src={thumbnail}
             width="320"
             height="240"
           />

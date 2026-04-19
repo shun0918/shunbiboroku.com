@@ -31,3 +31,6 @@ yarn-error.log*
 .vercel
 
 public
+
+# migration working directory
+/tmp
