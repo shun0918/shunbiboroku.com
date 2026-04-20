@@ -6,14 +6,15 @@ Personal Next.js 16 blog deployed at `shunbiboroku.com`. App Router only. Posts 
 
 ## Commands
 
-| Task                               | Command                                                                             |
-| ---------------------------------- | ----------------------------------------------------------------------------------- |
-| Dev server (http://localhost:3000) | `npm run dev` (Turbopack)                                                           |
-| Production build                   | `npm run build` (uses `--webpack` because `@serwist/next` injects a webpack plugin) |
-| Serve production build             | `npm run start`                                                                     |
-| ESLint (src only)                  | `npm run lint`                                                                      |
-| Prettier check (src only)          | `npm run format`                                                                    |
-| TypeScript check                   | `npx tsc --noEmit`                                                                  |
+| Task                                             | Command                                                                             |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| Dev server (http://localhost:3000)               | `npm run dev` (Turbopack)                                                           |
+| Production build                                 | `npm run build` (uses `--webpack` because `@serwist/next` injects a webpack plugin) |
+| Serve production build                           | `npm run start`                                                                     |
+| oxlint (src only)                                | `npm run lint` / autofix `npm run lint:fix`                                         |
+| oxfmt check (src + scss + root JSON + CLAUDE.md) | `npm run format` / write `npm run format:write`                                     |
+| TypeScript check (tsgo, primary)                 | `npm run type-check`                                                                |
+| TypeScript check (tsc fallback)                  | `npm run type-check:tsc` or `npx tsc --noEmit`                                      |
 
 There is **no test framework** configured — no `npm test`, no Jest/Vitest/Playwright. Verify changes manually via the dev server.
 
@@ -84,9 +85,10 @@ SCSS Modules per component (`src/styles/components/*.module.scss`) and per page 
 
 ## Tooling
 
-- **TypeScript**: 6.0, `strict: true`, `moduleResolution: "bundler"`, `types: ["node"]` (so `src/global.d.ts` augments `Window` for gtag). `ignoreDeprecations` was removed after Phase 2.
-- **ESLint**: 10.x with flat config in `eslint.config.mjs`. Uses `typescript-eslint`, `eslint-plugin-react-hooks@7`, `@next/eslint-plugin-next` (core-web-vitals rules), and `eslint-config-prettier/flat` last. `@next/next/no-img-element` is off (native `<img>` is a deliberate project choice). `eslint-plugin-react` is intentionally not installed — it has no ESLint-10-compatible release and its rules mostly overlap with what TypeScript + the Next plugin already enforce.
-- **Prettier**: `.prettierrc` enforces 2-space indent, single quotes, trailing commas, 100-char width, semicolons. Run `npm run lint` and `npm run format` before committing.
+- **TypeScript**: 6.0, `strict: true`, `moduleResolution: "bundler"`, `types: ["node"]` (so `src/global.d.ts` augments `Window` for gtag). Primary type-checker is **tsgo** (`@typescript/native-preview`, nightly-pinned) via `npm run type-check`; **tsc** stays as a fallback via `npm run type-check:tsc` while tsgo is in preview.
+- **oxlint**: 1.60 with config in `.oxlintrc.json`. Enables the `typescript`, `unicorn`, `oxc`, `react`, and `nextjs` plugins. All 21 rules from the old `next/core-web-vitals` preset are enumerated explicitly, including the two deliberate `off` overrides (`nextjs/no-img-element`, `nextjs/no-page-custom-font`) — native `<img>` is a project choice. React Hooks rules live under the `react/*` prefix in oxlint. `scripts/`, `next-sitemap.config.js`, `next.config.js`, and `src/sw.ts` are ignored.
+- **oxfmt**: 0.45 with config in `.oxfmtrc.json` (migrated from the old `.prettierrc` via `oxfmt --migrate=prettier`). Scope is `src/**/*.{js,jsx,ts,tsx,scss}` + root JSON + `CLAUDE.md`. `README.md` stays hand-controlled (oxfmt rewrites frontmatter examples incompatibly with authored posts). `content/**/*.md` is excluded — post bodies are authorial prose rendered through react-markdown regardless of source whitespace.
+- **Pre-commit**: husky + lint-staged auto-run `oxlint --fix` and `oxfmt` on staged files before each commit (see `.husky/pre-commit` and the `lint-staged` block in `package.json`). Type-check is not in the hook — run `npm run type-check` manually before pushing.
 
 ## Conventions
 
