@@ -1,8 +1,6 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import reactHooks from 'eslint-plugin-react-hooks';
-import prettier from 'eslint-config-prettier/flat';
-import prettierPlugin from 'eslint-plugin-prettier';
 import nextPlugin from '@next/eslint-plugin-next';
 import globals from 'globals';
 
@@ -24,7 +22,6 @@ export default [
     files: ['**/*.{ts,tsx,js,jsx}'],
     plugins: {
       'react-hooks': reactHooks,
-      prettier: prettierPlugin,
       '@next/next': nextPlugin,
     },
     languageOptions: {
@@ -43,8 +40,6 @@ export default [
       ...nextPlugin.configs['core-web-vitals'].rules,
       '@next/next/no-img-element': 'off',
       '@next/next/no-page-custom-font': 'off',
-      'prettier/prettier': 'error',
     },
   },
-  prettier,
 ];
