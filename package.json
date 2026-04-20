@@ -10,7 +10,9 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "format": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "type-check": "tsgo --noEmit",
+    "type-check:tsc": "tsc --noEmit"
   },
   "dependencies": {
     "@serwist/next": "^9.5.7",
@@ -36,6 +38,7 @@
     "@types/prismjs": "^1.26.6",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@typescript/native-preview": "7.0.0-dev.20260420.1",
     "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
