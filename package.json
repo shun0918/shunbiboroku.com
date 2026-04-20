@@ -9,8 +9,8 @@
     "prebuild": "node scripts/copy-content-images.js",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "format": "oxfmt --check 'src/**/*.{js,jsx,ts,tsx}'",
-    "format:write": "oxfmt 'src/**/*.{js,jsx,ts,tsx}'",
+    "format": "oxfmt --check 'src/**/*.{js,jsx,ts,tsx}' '**/*.json'",
+    "format:write": "oxfmt 'src/**/*.{js,jsx,ts,tsx}' '**/*.json'",
     "lint": "eslint src",
     "type-check": "tsgo --noEmit",
     "type-check:tsc": "tsc --noEmit"
