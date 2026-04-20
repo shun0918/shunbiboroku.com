@@ -10,7 +10,7 @@ type Props = {
 };
 
 const RoundIcon: React.FC<Props> = ({ href, src, alt = '', width = '37', height = '37' }) => {
-  const isOtherSite = /^https:\/\//.test(href);
+  const isOtherSite = href.startsWith('https://');
   const inner = (
     <div className={styles.roundicon}>
       <img className={styles.roundicon__image} src={src} alt={alt} width={width} height={height} />
