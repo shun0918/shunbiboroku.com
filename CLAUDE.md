@@ -6,14 +6,14 @@ Personal Next.js 16 blog deployed at `shunbiboroku.com`. App Router only. Posts 
 
 ## Commands
 
-| Task | Command |
-|---|---|
-| Dev server (http://localhost:3000) | `npm run dev` (Turbopack) |
-| Production build | `npm run build` (uses `--webpack` because `@serwist/next` injects a webpack plugin) |
-| Serve production build | `npm run start` |
-| ESLint (src only) | `npm run lint` |
-| Prettier check (src only) | `npm run format` |
-| TypeScript check | `npx tsc --noEmit` |
+| Task                               | Command                                                                             |
+| ---------------------------------- | ----------------------------------------------------------------------------------- |
+| Dev server (http://localhost:3000) | `npm run dev` (Turbopack)                                                           |
+| Production build                   | `npm run build` (uses `--webpack` because `@serwist/next` injects a webpack plugin) |
+| Serve production build             | `npm run start`                                                                     |
+| ESLint (src only)                  | `npm run lint`                                                                      |
+| Prettier check (src only)          | `npm run format`                                                                    |
+| TypeScript check                   | `npx tsc --noEmit`                                                                  |
 
 There is **no test framework** configured — no `npm test`, no Jest/Vitest/Playwright. Verify changes manually via the dev server.
 
@@ -46,6 +46,7 @@ content/{post,works}/<slug>/
 In markdown, image refs use `./images/<file>`; the post page rewrites them to `/content/<type>/<slug>/images/<file>` at render time.
 
 Loader code lives in `src/lib/content/`:
+
 - `posts.ts`, `works.ts` — gray-matter parses frontmatter and validates required fields
 - `paths.ts` — resolves slug → file paths
 - `description.ts` — auto-generates OGP description from the first 100 chars of the post body (don't add `description` to frontmatter)
@@ -55,6 +56,7 @@ Post bodies render via `react-markdown` with `remark-gfm` (GFM tables/checkboxes
 ## Metadata / SEO
 
 OGP and Twitter Card meta are produced entirely through Next.js's Metadata API in each page:
+
 - `export const metadata` for static pages (home, works)
 - `export async function generateMetadata({ params })` for dynamic post pages
 

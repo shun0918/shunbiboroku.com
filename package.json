@@ -9,8 +9,8 @@
     "prebuild": "node scripts/copy-content-images.js",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "format": "oxfmt --check 'src/**/*.{js,jsx,ts,tsx,scss}' '**/*.json'",
-    "format:write": "oxfmt 'src/**/*.{js,jsx,ts,tsx,scss}' '**/*.json'",
+    "format": "oxfmt --check 'src/**/*.{js,jsx,ts,tsx,scss}' '**/*.json' 'CLAUDE.md'",
+    "format:write": "oxfmt 'src/**/*.{js,jsx,ts,tsx,scss}' '**/*.json' 'CLAUDE.md'",
     "lint": "eslint src",
     "type-check": "tsgo --noEmit",
     "type-check:tsc": "tsc --noEmit"
