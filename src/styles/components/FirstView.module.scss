@@ -1,7 +1,6 @@
 @import 'base/variables';
 
 .firstview {
-
   @include mq(sm) {
     padding: 1.5rem 0;
   }
@@ -27,7 +26,7 @@
     @include mq(md) {
       font-size: 3em;
     }
-    
+
     &--link {
       display: block;
     }

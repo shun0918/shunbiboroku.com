@@ -6,5 +6,5 @@
   "printWidth": 100,
   "tabWidth": 2,
   "sortPackageJson": false,
-  "ignorePatterns": ["package-lock.json"]
+  "ignorePatterns": ["package-lock.json", "src/styles/_app/destyle.css"]
 }

@@ -1,17 +1,20 @@
 @mixin post-body {
   line-height: 1.6;
   letter-spacing: 0.025em;
-  &>* {
+  & > * {
     margin-block-start: 1em;
     margin-block-end: 1em;
   }
-  h3,h4,h5,h6 {
+  h3,
+  h4,
+  h5,
+  h6 {
     line-height: 1.25;
     margin-block-start: 2em;
     margin-block-end: 1em;
     font-weight: 600;
     color: var(--c-text-h-bg);
-    font-family: "Osaka-Mono", "Hiragino Maru Gothic ProN";
+    font-family: 'Osaka-Mono', 'Hiragino Maru Gothic ProN';
   }
   h3 {
     font-size: 2em;
@@ -35,7 +38,7 @@
       margin-top: 0;
     }
     code {
-      padding: .1em .2em;
+      padding: 0.1em 0.2em;
       background: var(--c-primary-border);
       border-radius: 4px;
     }
@@ -67,7 +70,8 @@
   hr {
     color: var(--c-text-hr);
   }
-  ul, ol {
+  ul,
+  ol {
     padding-left: 1.5em;
     p {
       margin: 0;
@@ -91,7 +95,7 @@
     @include shadow-dent;
   }
   img {
-    max-width:100%;
+    max-width: 100%;
   }
   code[class*='language-'],
   pre[class*='language-'] {
@@ -102,15 +106,57 @@
     white-space: pre;
   }
   .token {
-    &.comment, &.prolog, &.doctype, &.cdata { color: #8b94a3; font-style: italic; }
-    &.punctuation { color: #c0c5ce; }
-    &.property, &.tag, &.boolean, &.number, &.constant, &.symbol, &.deleted { color: #e6a9b4; }
-    &.selector, &.attr-name, &.string, &.char, &.builtin, &.inserted { color: #a3d9a5; }
-    &.operator, &.entity, &.url { color: #d8a172; }
-    &.atrule, &.attr-value, &.keyword { color: #c8a8e0; }
-    &.function, &.class-name { color: #f0d57d; }
-    &.regex, &.variable { color: #d8a172; }
-    &.important, &.bold { font-weight: bold; }
-    &.italic { font-style: italic; }
+    &.comment,
+    &.prolog,
+    &.doctype,
+    &.cdata {
+      color: #8b94a3;
+      font-style: italic;
+    }
+    &.punctuation {
+      color: #c0c5ce;
+    }
+    &.property,
+    &.tag,
+    &.boolean,
+    &.number,
+    &.constant,
+    &.symbol,
+    &.deleted {
+      color: #e6a9b4;
+    }
+    &.selector,
+    &.attr-name,
+    &.string,
+    &.char,
+    &.builtin,
+    &.inserted {
+      color: #a3d9a5;
+    }
+    &.operator,
+    &.entity,
+    &.url {
+      color: #d8a172;
+    }
+    &.atrule,
+    &.attr-value,
+    &.keyword {
+      color: #c8a8e0;
+    }
+    &.function,
+    &.class-name {
+      color: #f0d57d;
+    }
+    &.regex,
+    &.variable {
+      color: #d8a172;
+    }
+    &.important,
+    &.bold {
+      font-weight: bold;
+    }
+    &.italic {
+      font-style: italic;
+    }
   }
 }

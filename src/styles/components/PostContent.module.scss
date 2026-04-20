@@ -14,7 +14,7 @@
     text-align: center;
     @include shadow-bumps;
   }
-  
+
   &__eyecatch-wrapper {
     position: relative;
     max-width: 640px;
@@ -25,7 +25,7 @@
       padding-top: 62.25%;
     }
   }
-  
+
   &__eyecatch {
     position: absolute;
     top: 0;
@@ -35,9 +35,8 @@
     object-fit: cover;
   }
 
-  // &__head, 
-  
-  
+  // &__head,
+
   &__title {
     font-size: 2.2em;
     line-height: 1.5;
@@ -49,12 +48,12 @@
       font-size: 1.6em;
     }
   }
-  
+
   &__date {
     margin-top: 1em;
     font-size: 1em;
   }
-  
+
   &__body {
     @include post-body;
     max-width: 640px;
@@ -68,6 +67,5 @@
     @include mq(sm) {
       padding: 10px;
     }
-
   }
 }
