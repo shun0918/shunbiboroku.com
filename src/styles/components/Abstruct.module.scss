@@ -4,7 +4,8 @@
   &__link {
     display: block;
   }
-  &__image-flame, &__image {
+  &__image-flame,
+  &__image {
     border-radius: 1rem;
   }
   &__image-flame {
@@ -25,8 +26,9 @@
     font-size: 2rem;
     margin-top: 2rem;
   }
-  
-  &__tags, &__description {
+
+  &__tags,
+  &__description {
     margin-top: 1rem;
   }
   &__tags {

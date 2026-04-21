@@ -18,11 +18,11 @@
     column-gap: 1.6rem;
     grid-row-gap: 3rem;
     row-gap: 3rem;
-    
+
     @include mq(lg) {
       grid-template-columns: repeat(2, 1fr);
     }
-    
+
     @include mq(md) {
       display: grid;
       grid-template-columns: minmax(auto, 100%);

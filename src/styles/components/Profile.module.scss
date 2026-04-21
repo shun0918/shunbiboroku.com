@@ -9,7 +9,7 @@
   @include mq(md) {
     display: block;
   }
-  
+
   &__details {
     line-height: 1.75;
     max-width: 40%;
@@ -18,14 +18,14 @@
       text-align: center;
     }
   }
-  
+
   &__title {
     margin-bottom: 2.5rem;
     font-size: 3rem;
     font-family: 'Osaka';
     line-height: 1.25;
     color: var(--c-red);
-    @include mq(lg){
+    @include mq(lg) {
       font-size: 2.5rem;
     }
     @include mq(sm) {
@@ -37,8 +37,8 @@
         display: block;
       }
     }
-  };
-  
+  }
+
   &__icons {
     display: flex;
     justify-content: flex-start;
@@ -52,7 +52,7 @@
   &__icon {
     margin-left: 1rem;
     &:first-of-type {
-      margin-left:0;
+      margin-left: 0;
     }
   }
 }

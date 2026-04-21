@@ -9,8 +9,13 @@
     "prebuild": "node scripts/copy-content-images.js",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "format": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint": "eslint src"
+    "format": "oxfmt --check 'src/**/*.{js,jsx,ts,tsx,scss}' '**/*.json' 'CLAUDE.md'",
+    "format:write": "oxfmt 'src/**/*.{js,jsx,ts,tsx,scss}' '**/*.json' 'CLAUDE.md'",
+    "lint": "oxlint --config .oxlintrc.json src",
+    "lint:fix": "oxlint --config .oxlintrc.json --fix src",
+    "type-check": "tsgo --noEmit",
+    "type-check:tsc": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@serwist/next": "^9.5.7",
@@ -29,22 +34,32 @@
     "strip-markdown": "^6.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@next/eslint-plugin-next": "^16.2.4",
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^25.6.0",
     "@types/prismjs": "^1.26.6",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^10.2.1",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.5.0",
-    "jiti": "^2.6.1",
+    "@typescript/native-preview": "7.0.0-dev.20260420.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "next-sitemap": "^4.2.3",
-    "prettier": "^3.8.3",
-    "typescript": "^6.0.3",
-    "typescript-eslint": "^8.58.2"
+    "oxfmt": "0.45.0",
+    "oxlint": "1.60.0",
+    "typescript": "^6.0.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "oxlint --fix --config .oxlintrc.json",
+      "oxfmt"
+    ],
+    "*.scss": [
+      "oxfmt"
+    ],
+    "*.json": [
+      "oxfmt"
+    ],
+    "CLAUDE.md": [
+      "oxfmt"
+    ]
   }
 }
