@@ -1,19 +1,21 @@
 import Link from 'next/link';
+import type { ComponentType, SVGProps } from 'react';
 import styles from '~/styles/components/RoundIcon.module.scss';
+
+type IconComponent = ComponentType<SVGProps<SVGSVGElement> & { size?: number | string }>;
 
 type Props = {
   href: string;
-  src: string;
+  icon: IconComponent;
   alt: string;
-  width: string;
-  height: string;
+  size?: number;
 };
 
-const RoundIcon: React.FC<Props> = ({ href, src, alt = '', width = '37', height = '37' }) => {
+const RoundIcon: React.FC<Props> = ({ href, icon: Icon, alt, size = 35 }) => {
   const isOtherSite = href.startsWith('https://');
   const inner = (
     <div className={styles.roundicon}>
-      <img className={styles.roundicon__image} src={src} alt={alt} width={width} height={height} />
+      <Icon className={styles.roundicon__image} size={size} aria-label={alt} />
       <div className={styles['roundicon__alt-wrapper']}>
         <span className={styles.roundicon__alt}>{alt}</span>
       </div>

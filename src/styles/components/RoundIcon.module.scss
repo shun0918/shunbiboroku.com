@@ -16,8 +16,8 @@
   }
 
   &__image {
-    max-width: 100%;
-    object-fit: contain;
+    display: block;
+    color: var(--c-text-h);
   }
 
   &__alt-wrapper {
