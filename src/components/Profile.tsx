@@ -1,3 +1,5 @@
+import { Briefcase } from 'lucide-react';
+import { SiGithub, SiX } from '@icons-pack/react-simple-icons';
 import styles from '~/styles/components/Profile.module.scss';
 import RoundIcon from '~/components/RoundIcon';
 import Ben from '~/components/Ben';
@@ -6,17 +8,17 @@ const Profile: React.FC = () => {
   const icons = [
     {
       alt: 'GitHub',
-      src: '/img/Icon awesome-github.png',
+      icon: SiGithub,
       href: 'https://github.com/shun0918',
     },
     {
-      alt: 'Twitter',
-      src: '/img/Icon awesome-twitter.png',
+      alt: 'X',
+      icon: SiX,
       href: 'https://twitter.com/DVq0Hp0iU6itt4N',
     },
     {
       alt: '制作実績',
-      src: '/img/Icon awesome-handshake.png',
+      icon: Briefcase,
       href: '/works',
     },
   ];
@@ -37,7 +39,7 @@ const Profile: React.FC = () => {
           <div className={styles.profile__icons}>
             {icons.map((m, i) => (
               <div key={i} className={styles.profile__icon}>
-                <RoundIcon alt={m.alt} src={m.src} href={m.href} width="35" height="35" />
+                <RoundIcon alt={m.alt} icon={m.icon} href={m.href} size={35} />
               </div>
             ))}
           </div>
